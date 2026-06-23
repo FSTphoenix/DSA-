@@ -14,19 +14,18 @@
  * }
  */
 class Solution {
-    static void f(List<TreeNode> list,TreeNode root){
-        if(root==null) return;
-        list.add(root);
-        f(list,root.right);
-        f(list,root.left);
-    }
     public TreeNode searchBST(TreeNode root, int val) {
-        List<TreeNode> list = new ArrayList<>();
-        f(list,root);
-        for(int i=0;i<list.size();i++){
-            if(list.get(i).val==val) return list.get(i);
-        }
+       if(root==null){
         return null;
+       }
+       if(root.val==val){
+        return root;
+       }
+        if(root.val>val){
+            return searchBST(root.left,val);
+        }
+        return searchBST(root.right,val);
+
     }
     
 }
